@@ -1,0 +1,61 @@
+/*footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 3px;
+
+}*/
+.fotoPerfil{
+
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0px;
+}
+.linkfoto{
+    background: linear-gradient(transparent, transparent, black);
+    background-size: 50px;
+    opacity: 0;
+    height: 150px;
+    border-radius: 50%;
+    padding-top: 65%;
+    transition: ease-in 0.2s;
+}
+
+.linkfoto:hover{
+    opacity: 1;
+}
+
+.homeimg{
+    background-image: url('../Img/PlanoFundo/bg2.jpg');
+    background-size: 100% 100%;
+    background-attachment: fixed;
+}
+
+.corpadrao{
+    /*    background: linear-gradient(to bottom, #0277bd , #039be5);*/
+    background: linear-gradient(to bottom, #0277bd , #039be5);
+}
+
+.corcancelar{
+    /*    background: linear-gradient(to bottom, #0277bd , #039be5);*/
+    background: linear-gradient(to bottom, #d32f2f , #e53935 );
+}
+
+.alerta_vermelho{
+    color: red;
+}
+
+body {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
