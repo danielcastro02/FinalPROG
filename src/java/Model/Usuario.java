@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -36,6 +37,19 @@ public class Usuario {
             this.administrador = rs.getString(7);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+        }
+    }
+    
+    public Usuario(HttpServletRequest rs){
+        try{
+        this.id_usuario = Integer.parseInt(rs.getParameter("id_usuario"));
+        this.nome = rs.getParameter("nome");
+        this.usuario = rs.getParameter("usuario");
+        this.telefone = rs.getParameter("senha");
+        this.foto_perfil = rs.getParameter("foto_perfil");
+        this.administrador = rs.getParameter("administrador");
+        }catch(Exception e){
+            System.out.println(e.getMessage());
         }
     }
     

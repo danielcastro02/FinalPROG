@@ -1,7 +1,7 @@
 <%@page import="Model.Usuario"%>
 <nav  class="black z-depth-1" style="position: fixed;">
     <div class = "row nav-wrapper">
-        <a class="col s4 left-align" tabindex="2" href = "./home.php" style = "margin-left: 30px; font-size: 40px">CardtinhaShop</a>
+        <a class="col s4 left-align" tabindex="2" href = "./home.php" style = "margin-left: 30px; font-size: 40px">CartinhaShop</a>
         <form class="col s4 hide-on-med-and-down " action="./Buscas/telabuscageral.php" method="post">
             <div class="input-field center">
                 <input id="search" name="buscar" placeholder="Pesquisar" class="grey darken-3 white-text" type="search" required/>
@@ -10,7 +10,7 @@
             </div>
         </form>
         <ul class = "right-align right hide-on-med-and-down">
-            <li class="hoverable"><a href = "./index.php">Home</a></li>
+            <li class="hoverable"><a href = "./index.php">Início</a></li>
                 <%
                     Usuario logado = null;
                     if (request.getSession().getAttribute("logado") != null) {
