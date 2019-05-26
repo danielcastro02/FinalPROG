@@ -57,5 +57,6 @@ body {
 }
 
 main {
+    margin-top: 70px;
     flex: 1 0 auto;
 }

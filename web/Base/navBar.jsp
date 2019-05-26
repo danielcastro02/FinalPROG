@@ -1,5 +1,5 @@
 <%@page import="Model.Usuario"%>
-<nav  class="black z-depth-1" style="position: fixed;">
+<nav  class="black z-depth-1" style="position: fixed; z-index: 9;">
     <div class = "row nav-wrapper">
         <a class="col s4 left-align" tabindex="2" href = "./home.php" style = "margin-left: 30px; font-size: 40px">CartinhaShop</a>
         <form class="col s4 hide-on-med-and-down " action="./Buscas/telabuscageral.php" method="post">
@@ -10,22 +10,22 @@
             </div>
         </form>
         <ul class = "right-align right hide-on-med-and-down">
-            <li class="hoverable"><a href = "./index.php">Início</a></li>
+            
                 <%
                     Usuario logado = null;
                     if (request.getSession().getAttribute("logado") != null) {
                         logado = (Usuario) request.getSession().getAttribute("logado");
                 %>
             <li class="hoverable"><a href = "alteraPerfil.jsp"><%=logado.getNome()%></a></li>
+            <li class="hoverable"><a href = "./UsuarioControle?action=logout">Sair</a></li>
                 <%
                 } else {
                 %>
+                <li class="hoverable"><a href = "./login.jsp">Login</a></li>
                 <li class="hoverable"><a href = "./cadastro.jsp">Cadastre-se</a></li>
             <%
                 }
             %>
-
-            <li class="hoverable"><a href = "./Controles/server.php?logout=sair" style="margin-right: 25px">Sair</a></li>
         </ul>
 
     </div>

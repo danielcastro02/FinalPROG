@@ -16,18 +16,19 @@ import javax.servlet.http.HttpServletRequest;
  * @author 2017007243
  */
 public class Usuario {
+
     private int id_usuario;
     private String nome;
     private String usuario;
     private String telefone;
     private String foto_perfil;
     private String administrador;
+    private String senha;
 
     public Usuario() {
-    
     }
 
-    public Usuario(ResultSet rs){
+    public Usuario(ResultSet rs) {
         try {
             this.id_usuario = rs.getInt(1);
             this.nome = rs.getString(2);
@@ -35,24 +36,58 @@ public class Usuario {
             this.telefone = rs.getString(5);
             this.foto_perfil = rs.getString(6);
             this.administrador = rs.getString(7);
+            this.senha = rs.getString(4);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
-    
-    public Usuario(HttpServletRequest rs){
-        try{
-        this.id_usuario = Integer.parseInt(rs.getParameter("id_usuario"));
-        this.nome = rs.getParameter("nome");
-        this.usuario = rs.getParameter("usuario");
-        this.telefone = rs.getParameter("senha");
-        this.foto_perfil = rs.getParameter("foto_perfil");
-        this.administrador = rs.getParameter("administrador");
-        }catch(Exception e){
+
+    public Usuario(HttpServletRequest rs) {
+        try {
+            this.id_usuario = Integer.parseInt(rs.getParameter("id_usuario"));
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        try {
+            this.nome = rs.getParameter("nome");
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        try {
+            this.usuario = rs.getParameter("usuario");
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        try {
+            this.telefone = rs.getParameter("telefone");
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        try {
+            this.foto_perfil = rs.getParameter("foto_perfil");
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        try {
+            this.administrador = rs.getParameter("administrador");
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        try {
+            this.senha = rs.getParameter("senha1");
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
-    
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
     public int getId_usuario() {
         return id_usuario;
     }
@@ -100,6 +135,5 @@ public class Usuario {
     public void setAdministrador(String administrador) {
         this.administrador = administrador;
     }
-    
-    
+
 }
