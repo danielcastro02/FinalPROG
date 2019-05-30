@@ -26,8 +26,8 @@ public class UsuarioDAO {
             ps.setString(2, us.getUsuario());
             ps.setString(3, us.getSenha());
             ps.setString(4, us.getTelefone());
-            ps.setString(5, "Imagens/userGeneric.jpg");
-            ps.setString(6, "false");
+            ps.setString(5, "Imagens/userGeneric.png");
+            ps.setInt(6, 0);
             ps.execute();
             return true;
         }catch(Exception e){

@@ -22,7 +22,7 @@ public class Usuario {
     private String usuario;
     private String telefone;
     private String foto_perfil;
-    private String administrador;
+    private int administrador;
     private String senha;
 
     public Usuario() {
@@ -35,7 +35,7 @@ public class Usuario {
             this.usuario = rs.getString(3);
             this.telefone = rs.getString(5);
             this.foto_perfil = rs.getString(6);
-            this.administrador = rs.getString(7);
+            this.administrador = rs.getInt(7);
             this.senha = rs.getString(4);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -69,7 +69,7 @@ public class Usuario {
             System.out.println(e.getMessage());
         }
         try {
-            this.administrador = rs.getParameter("administrador");
+            this.administrador = Integer.parseInt(rs.getParameter("administrador"));
         }catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -128,11 +128,11 @@ public class Usuario {
         this.foto_perfil = foto_perfil;
     }
 
-    public String getAdministrador() {
+    public int getAdministrador() {
         return administrador;
     }
 
-    public void setAdministrador(String administrador) {
+    public void setAdministrador(int administrador) {
         this.administrador = administrador;
     }
 

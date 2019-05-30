@@ -10,22 +10,27 @@
             </div>
         </form>
         <ul class = "right-align right hide-on-med-and-down">
-            
-                <%
-                    Usuario logado = null;
-                    if (request.getSession().getAttribute("logado") != null) {
-                        logado = (Usuario) request.getSession().getAttribute("logado");
-                %>
+
+            <%
+                Usuario logado = null;
+                if (request.getSession().getAttribute("logado") != null) {
+                    logado = (Usuario) request.getSession().getAttribute("logado");
+                    if (logado.getAdministrador() == 1) {
+            %>
+            <li class="hoverable"><a href = "vender.jsp">Novo produto</a></li>
+            <%
+                }
+            %>
             <li class="hoverable"><a href = "alteraPerfil.jsp"><%=logado.getNome()%></a></li>
             <li class="hoverable"><a href = "./UsuarioControle?action=logout">Sair</a></li>
                 <%
                 } else {
                 %>
-                <li class="hoverable"><a href = "./login.jsp">Login</a></li>
-                <li class="hoverable"><a href = "./cadastro.jsp">Cadastre-se</a></li>
-            <%
-                }
-            %>
+            <li class="hoverable"><a href = "./login.jsp">Login</a></li>
+            <li class="hoverable"><a href = "./cadastro.jsp">Cadastre-se</a></li>
+                <%
+                    }
+                %>
         </ul>
 
     </div>
