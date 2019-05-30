@@ -2,7 +2,7 @@
 <%
     Usuario us = (Usuario) session.getAttribute("logado");
     if (us != null) {
-        if (us.getAdministrador() != "true") {
+        if (us.getAdministrador() != 1) {
             response.sendRedirect("./index.jsp?msg=acessoNegado");
         }
     } else {
