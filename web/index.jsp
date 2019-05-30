@@ -14,6 +14,19 @@
     </head>
     <body class="homeimg">
         <jsp:include page="./Base/navBar.jsp"/>
+        <%
+        try{
+            if(request.getParameter("msg").equals("ERRO")){
+                %>
+                <script>
+                    alert('Compartamento inesperado do sistema, por favor tente novamente, mesmo que nos não tenhamos mudado nada ainda...');
+                </script>
+        <%
+            }
+        }catch(Exception e){
+            
+        }
+        %>
         <main>
         </main>
     </body>
