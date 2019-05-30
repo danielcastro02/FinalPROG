@@ -59,7 +59,7 @@ public class FotoControle extends HttpServlet {
                                     String id_produto = request.getParameter("id_produto");
                                     String nome = id_produto + Integer.toString((int) (Math.random() * 1000000000));
                                     System.out.println("ksdhfbgkaserhf");
-                                    String caminho = request.getServletContext().getRealPath("Imagens") + "/" + nome + ".jpg";
+                                    String caminho = request.getServletContext().getRealPath("Imagens") + "/../../../web/Imagens/" + nome + ".jpg";
                                     System.out.println(caminho);
                                     item.write(new File(caminho));
                                     System.out.println(id_produto);
