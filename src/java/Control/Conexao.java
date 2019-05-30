@@ -5,10 +5,26 @@
  */
 package Control;
 
+import java.sql.Connection;
+ 
+import java.sql.DriverManager;
+ 
+import java.sql.SQLException;
 /**
  *
  * @author Daniel
  */
 public class Conexao {
     
+    public static Connection conexao;
+    
+    public static Connection getConexao() throws ClassNotFoundException, SQLException{
+        Class.forName("com.mysql.jdbc.Driver");
+        if(conexao!=null){
+            return conexao;
+        }else{
+            conexao = DriverManager.getConnection("jdbc:mysql://localhost/cartinhas", "root", "");
+            return conexao;
+        }
+    }
 }
