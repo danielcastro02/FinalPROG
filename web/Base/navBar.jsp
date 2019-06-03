@@ -17,7 +17,7 @@
                     logado = (Usuario) request.getSession().getAttribute("logado");
                     if (logado.getAdministrador() == 1) {
             %>
-            <li class="hoverable"><a href = "vender.jsp">Novo produto</a></li>
+            <li class="hoverable"><a href = "cadastroProduto.jsp">Novo produto</a></li>
             <%
                 }
             %>

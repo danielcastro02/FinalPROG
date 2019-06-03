@@ -2,7 +2,7 @@
 <%
     Usuario us = (Usuario) session.getAttribute("logado");
     if (us != null) {
-        if (us.getAdministrador() != "true") {
+        if (us.getAdministrador() != 1) {
             response.sendRedirect("./index.jsp?msg=acessoNegado");
         }
     } else {
@@ -31,20 +31,17 @@
                                 <label for='nome'>Nome:</label>
                             </div>
                             <div class="input-field col s6">
-                                <input type="text" name="usuario" class="input-field"/>
-                                <label for='usuario'>Escolha um nome de usuario:</label>
+                                <input type="text" name="valor" class="input-field"/>
+                                <label for='valor'>Valor R$</label>
                             </div>
                             <div class="input-field col s6">
-                                <input type="text" name="telefone" class="input-field"/>
-                                <label for='telefone'>Telefone:</label>
+                                <input type="text" name="quantidade" class="input-field"/>
+                                <label for='quantidade'>Quantidade:</label>
                             </div>
-                            <div class="input-field col s6">
-                                <input type="text" name="senha1" class="input-field"/>
-                                <label for='senha1'>Senha:</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input type="text" name="senha2" class="input-field"/>
-                                <label for='senha2'>Repita a senha:</label>
+                            
+                            <div class="input-field col s12">
+                                <textarea id="textarea1" class="materialize-textarea" name="descricao"></textarea>
+                                <label for='senha2'>Descrição:</label>
                             </div>
                         </div>
 
@@ -56,6 +53,7 @@
                         </div>
                     </form>
                 </div>
+                
             </div>
         </main>
     </body>
