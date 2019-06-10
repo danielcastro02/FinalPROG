@@ -39,12 +39,10 @@ public class ProdutoDAO {
         
         try {
             Connection cn = Conexao.getConexao();
-            String sql = "selct * from produto where nome = ?, desxricao = ?, calor = ?, quantidade = ?;";
+            String sql = "select * from produto where nome = ? and descricao = ?;";
             PreparedStatement ps = cn.prepareStatement(sql);
             ps.setString(1, pr.getNome());
             ps.setString(2, pr.getDescricao());
-            ps.setDouble(3, pr.getValor());
-            ps.setInt(4, pr.getQuantidade());
             ResultSet rs = ps.executeQuery();
             rs.next();
             return new Produto(rs);
