@@ -6,9 +6,12 @@
 package Control;
 
 import Model.Produto;
+import Model.Venda;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -52,5 +55,63 @@ public class ProdutoDAO {
         }
         
     }
+    
+    public Produto selectId(int id) {
+        
+        try {
+            Connection cn = Conexao.getConexao();
+            String sql = "select * from produto where id_produto = ?;";
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            return new Produto(rs);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+        
+    }
+    
+    public List select() {
+        
+        try {
+            Connection cn = Conexao.getConexao();
+            String sql = "select * from produto;";
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            List<Produto> ls = new ArrayList<Produto>();
+            while(rs.next()){
+                ls.add(new Produto(rs));
+            }
+            return ls;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+        
+    }
+    
+    public List selectCarrinho(int id) {
+        
+        try {
+            Connection cn = Conexao.getConexao();
+            String sql = "select p.* from produto as p left outer join carrinho as c on c.id_produto = p.id_produto where c.id_usuario = ?;";
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            List<Produto> ls = new ArrayList<Produto>();
+            while(rs.next()){
+                ls.add(new Produto(rs));
+            }
+            return ls;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+        
+    }
+
+   
     
 }

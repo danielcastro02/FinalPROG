@@ -5,7 +5,9 @@
  */
 package Control;
 
-import Model.Produto;
+import Control.CarrinhoDAO;
+import Model.Carrinho;
+import Model.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -19,7 +21,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Daniel
  */
-public class ProdutoControle extends HttpServlet {
+public class CarrinhoControle extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,26 +38,25 @@ public class ProdutoControle extends HttpServlet {
             HttpSession session = request.getSession();
             RequestDispatcher disp = request.getRequestDispatcher("");
             String funcao = request.getParameter("action");
-            ProdutoDAO pdao = new ProdutoDAO();
+            CarrinhoDAO cdao = new CarrinhoDAO();
             switch (funcao) {
-                case "cadastro":
-
-                    Produto pr = new Produto(request);
-                    if (pdao.cadastro(pr)) {
-                        pr = pdao.selectCompleto(pr);
-                        response.sendRedirect("./envioFoto.jsp?msg="+Integer.toString(pr.getId_produto()));
+                case "addCart":
+                    Carrinho c = new Carrinho();
+                    c.setId_produto(Integer.parseInt(request.getParameter("id_produto")));
+                    c.setQuantidade(1);
+                    c.setId_usuario(((Usuario) session.getAttribute("logado")).getId_usuario());
+                    if (cdao.inserir(c)) {
+                        response.sendRedirect("./index.jsp");
                     } else {
                         response.sendRedirect("./index.jsp?msg=ERRO");
                     }
-
                     break;
-                case "addCarrinho":
-                    break;
-                case "removeCarrinho":
-                    break;
-                case "comprar":
-                    
-                    
+                case "remover":
+                    if (cdao.delete(Integer.parseInt(request.getParameter("id_carrinho")))) {
+                        response.sendRedirect("./carrinho.jsp");
+                    } else {
+                        response.sendRedirect("./index.jsp?msg=ERRO");
+                    }
                     break;
             }
         }

@@ -17,7 +17,7 @@
         <main>
             <div class="row">
                 <div class="col s6 offset-s3 card">
-                    <form action="FotoControle?action=cadastro&id_produto=<%= request.getParameter("id_produto")%>" method="post" enctype="multipart/form-data" class="row">
+                    <form action="FotoControle?action=cadastro&id_produto=<%= request.getParameter("msg")%>" method="post" enctype="multipart/form-data" class="row">
 
                         <div class="file-field input-field col s9 center">
                             <h4>Informe a foto Principal do seu Produto</h4>

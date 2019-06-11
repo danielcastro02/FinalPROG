@@ -12,6 +12,14 @@
         <servlet-name>FotoControle</servlet-name>
         <servlet-class>Control.FotoControle</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CarrinhoControle</servlet-name>
+        <servlet-class>Control.CarrinhoControle</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VendaControle</servlet-name>
+        <servlet-class>Control.VendaControle</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>UsuarioControle</servlet-name>
         <url-pattern>/UsuarioControle</url-pattern>
@@ -24,9 +32,17 @@
         <servlet-name>FotoControle</servlet-name>
         <url-pattern>/FotoControle</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CarrinhoControle</servlet-name>
+        <url-pattern>/CarrinhoControle</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VendaControle</servlet-name>
+        <url-pattern>/VendaControle</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
-            30
+            999
         </session-timeout>
     </session-config>
 </web-app>

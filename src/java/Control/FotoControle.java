@@ -73,7 +73,7 @@ public class FotoControle extends HttpServlet {
 
                         } catch (Exception ex) {
                             response.sendRedirect("./index.jsp?msg=ERRO");
-
+                            System.out.println(ex.getMessage());
                         }
 
                     } else {

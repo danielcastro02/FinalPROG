@@ -8,6 +8,7 @@ package Control;
 import Model.Foto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 /**
  *
@@ -28,6 +29,21 @@ public class FotoDAO {
             
             System.out.println(e.getMessage());
             return false;
+        }
+    }
+    
+    public String selectPIdProdutO(int id){
+        try{
+            Connection cn = Conexao.getConexao();
+            String sql = "select * from foto where id_produto = ?;";
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            return rs.getString(3);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return null;
         }
     }
     
