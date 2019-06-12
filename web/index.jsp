@@ -57,6 +57,7 @@
                                 <span class="card-title bold"><%= p.getNome()%></span>
                                 <p><%= p.getDescricao()%></p>
                                 <p>R$<%= p.getValor()%></p>
+                                <p>Estoque: <%= p.getQuantidade()%></p>
                             </div>
                             <div class="card-action">
                                 <div class="row">

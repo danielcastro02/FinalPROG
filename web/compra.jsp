@@ -4,7 +4,7 @@
     Author     : Daniel
 --%>
 <%
-    if(session.getAttribute("logado")== null){
+    if (session.getAttribute("logado") == null) {
         response.sendRedirect("login.jsp");
     }
 
@@ -28,8 +28,7 @@
         <main>
             <div class="row" style="width: 80vw; margin-left: auto; margin-right: auto;">
 
-                <%
-                    ProdutoDAO pdao = new ProdutoDAO();
+                <%                    ProdutoDAO pdao = new ProdutoDAO();
                     Produto p = pdao.selectId(Integer.parseInt(request.getParameter("id_produto")));
                     if (p != null) {
                 %>
@@ -43,6 +42,7 @@
                                 <span class="card-title bold"><%= p.getNome()%></span>
                                 <p><%= p.getDescricao()%></p>
                                 <p>R$<%= p.getValor()%></p>
+                                <p>Estoque: <%= p.getQuantidade()%></p>
                             </div>
                         </div>
                         <div class="col s8">
@@ -50,18 +50,20 @@
                                 <h4>Confirme a compra:</h4>
                                 <form action="./VendaControle?action=vender" method="POST" class="col s12">
                                     <input type="text" name="id_produto" value="<%= request.getParameter("id_produto")%>" hidden="true"/>
-                                    <input type="text" name="valor" value="<%= p.getValor() %>" hidden="true" id="valor"/>
+                                    <input type="text" name="valor" value="<%= p.getValor()%>" hidden="true" id="valor"/>
                                     <div class="row">
-                                    <div class="input-field col s12">
-                                        <input type="number" id="quantia" name="quantia" value="1"/>
-                                        <label>Quantidade:</label>
-                                    </div>
+                                        <div class="input-field col s12">
+                                            <input type="number" id="quantia" name="quantia" value="1"/>
+                                            <input type="text" name="estoque" class="estoque" value="<%= p.getQuantidade()%>" hidden="true"/>
+
+                                            <label>Quantidade:</label>
+                                        </div>
                                     </div>
                                     <a class="btn red darken-2" href="index.jsp">Cancelar</a>
                                     <input type="submit" class="btn black" value="Comprar"/>
                                 </form>
-                                    
-                                    <h4 id="total">Total: R$ <%= p.getValor() %></h4>
+
+                                <h4 id="total">Total: R$ <%= p.getValor()%></h4>
                             </div>
                         </div>
                     </div>
@@ -74,11 +76,19 @@
 
         <script>
             $('#quantia').change(function () {
-                var valor = <%= p.getValor() %>;
-                var quantia = $(this).val();
-                var total = valor*quantia;
-                $("#total").text("Total: R$"+total);
-                $("#valor").val(total);
+                if ($(this).val() < 1) {
+                    $(this).val('1');
+                } else {
+                    if ($(this).val() > $(this).next($(".estoque")).val()) {
+                        $(this).val(($(this).val() - 1));
+                    } else {
+                        var valor = <%= p.getValor()%>;
+                        var quantia = $(this).val();
+                        var total = valor * quantia;
+                        $("#total").text("Total: R$" + total);
+                        $("#valor").val(total);
+                    }
+                }
             });
         </script>
     </body>

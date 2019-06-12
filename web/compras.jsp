@@ -41,12 +41,12 @@
                         ProdutoDAO pdao = new ProdutoDAO();
                         ProdutoVendidoDAO pvdao = new ProdutoVendidoDAO();
                         List<Venda> ls = vdao.selectPUsuario(logado.getId_usuario());
-
-                        for (Venda v : ls) {
+                        if (!ls.isEmpty()) {
+                            for (Venda v : ls) {
                     %>
 
                     <li class="card">
-                        <div class="collapsible-header"><%= v.getData_venda().getDay() + "/" + v.getData_venda().getMonth() + "/" + v.getData_venda().getYear() + " -- R$" + v.getValor()%></div>
+                        <div class="collapsible-header"><%= v.getData_venda() + " -- R$" + v.getValor()%></div>
                         <div class="collapsible-body">
                             <table class="striped">
                                 <tr>
@@ -57,7 +57,7 @@
                                     List<ProdutoVendido> pvl = pvdao.selectPVenda(v.getId_venda());
                                     for (ProdutoVendido pv : pvl) {
                                         Produto pr = pdao.selectId(pv.getId_produto());
-                                %><tr><%= "<td>" + pr.getNome() + "</td><td>" + (int)pv.getQuantidade() + "</td><td>" + (pr.getValor() * pv.getQuantidade()) + "</td>"%></tr> </p><%
+                                %><tr><%= "<td>" + pr.getNome() + "</td><td>" + (int) pv.getQuantidade() + "</td><td>" + (pr.getValor() * pv.getQuantidade()) + "</td>"%></tr> </p><%
                                     }
                                 %>
                             </table>
@@ -65,7 +65,16 @@
                     </li>
 
                     <%
-                        }
+                            }
+                        }else{
+%>
+<div class="row card center">
+    <br><br><br><br><br><br><br>
+    <h5>Você ainda não tem compras aqui</h5>
+    <br><br><br><br><br><br><br>
+</div>
+                    <%
+}
                     %>
                 </ul>
             </div>

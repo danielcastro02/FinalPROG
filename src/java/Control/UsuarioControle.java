@@ -101,7 +101,7 @@ public class UsuarioControle extends HttpServlet {
                                 String id_usuario = request.getParameter("id_usuario");
                                 String nome = "profile" + id_usuario + Integer.toString((int) (Math.random() * 999999999));
                                 System.out.println("ksdhfbgkaserhf");
-                                String caminho = request.getServletContext().getRealPath("Imagens") + "/../../../web/Imagens/" + nome + ".jpg";
+                                String caminho = request.getServletContext().getRealPath("Imagens") + "/" + nome + ".jpg";
                                 System.out.println(caminho);
                                 item.write(new File(caminho));
                                 System.out.println(id_usuario);
@@ -116,8 +116,6 @@ public class UsuarioControle extends HttpServlet {
                                 }
                                 use.setFoto_perfil(nome + ".jpg");
                                 udao.updatePerfil(use);
-                                use = (Usuario) session.getAttribute("logado");
-                                use.setFoto_perfil(nome + ".jpg");
                                 session.setAttribute("logado", use);
                             }
                         }

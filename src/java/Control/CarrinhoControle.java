@@ -42,14 +42,18 @@ public class CarrinhoControle extends HttpServlet {
             CarrinhoDAO cdao = new CarrinhoDAO();
             switch (funcao) {
                 case "addCart":
-                    Carrinho c = new Carrinho();
-                    c.setId_produto(Integer.parseInt(request.getParameter("id_produto")));
-                    c.setQuantidade(1);
-                    c.setId_usuario(((Usuario) session.getAttribute("logado")).getId_usuario());
-                    if (cdao.inserir(c)) {
-                        response.sendRedirect("./index.jsp");
+                    if (session.getAttribute("logado") == null) {
+                        response.sendRedirect("./login.jsp");
                     } else {
-                        response.sendRedirect("./index.jsp?msg=ERRO");
+                        Carrinho c = new Carrinho();
+                        c.setId_produto(Integer.parseInt(request.getParameter("id_produto")));
+                        c.setQuantidade(1);
+                        c.setId_usuario(((Usuario) session.getAttribute("logado")).getId_usuario());
+                        if (cdao.inserir(c)) {
+                            response.sendRedirect("./index.jsp");
+                        } else {
+                            response.sendRedirect("./index.jsp?msg=ERRO");
+                        }
                     }
                     break;
                 case "remover":

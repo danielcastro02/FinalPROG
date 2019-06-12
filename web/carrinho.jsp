@@ -33,8 +33,7 @@
             <div class="row" style="width: 80vw; margin-left: auto; margin-right: auto;">
                 <form action="./VendaControle?action=vender" method="POST" class="col s12 card">
 
-                    <%                       
-                        ProdutoDAO pdao = new ProdutoDAO();
+                    <%                        ProdutoDAO pdao = new ProdutoDAO();
                         CarrinhoDAO cdao = new CarrinhoDAO();
                         List<Carrinho> lc = cdao.selectCarrinho(((Usuario) session.getAttribute("logado")).getId_usuario());
                         double valortotal = 0;
@@ -51,19 +50,23 @@
                                 <span class="card-title bold"><%= p.getNome()%></span>
                                 <p><%= p.getDescricao()%></p>
                                 <p>R$<%= p.getValor()%></p>
+                                <p>Estoque: <%= p.getQuantidade()%></p>
                             </div>
                         </div>
                         <div class="col s6 offset-s1">
                             <div class="row center">
                                 <input type="text" name="id_produto" value="<%= p.getId_produto()%>" hidden="true"/>
+
+                                <input type="text" name="id_carrinho" value="<%= c.getId_carrinho()%>" hidden="true"/>
                                 <div class="row">
                                     <div class="input-field col s12">
                                         <input type="number" class="quantia" name="quantia" value="1"/>
+                                        <input type="text" name="estoque" class="estoque" value="<%= p.getQuantidade()%>" hidden="true"/>
                                         <input type="text" class="valor" name="individual" value="<%= p.getValor()%>"/>
                                         <label>Quantidade:</label>
                                     </div>
                                 </div>
-                                <a class="btn red darken-2" href="CarrinhoControle?action=remover&id_carrinho=<%= c.getId_carrinho() %>">Remover</a>
+                                <a class="btn red darken-2" href="CarrinhoControle?action=remover&id_carrinho=<%= c.getId_carrinho()%>">Remover</a>
 
                             </div>
                         </div>
@@ -83,17 +86,24 @@
                 <script>
 
                     $('.quantia').change(function () {
-                        //$("#valor").attr("readonly", "false");
-                        $("#total").val("0");
-                        $(".quantia").each(function () {
-                            var valor = $(this).next($(".valor")).val();
-                            var quantia = $(this).val();
-                            valor = valor * quantia;
-                            novo = parseFloat($("#total").val()) + valor;
-                            $("#total").val(novo);
-                        });
-                        //$("#valor").attr("readonly", "true");
-
+                        if ($(this).val() < 1) {
+                            $(this).val('1');
+                        } else {
+                            if ($(this).val() > $(this).next($(".estoque")).val()) {
+                                $(this).val(($(this).val() - 1));
+                            } else {
+                                //$("#valor").attr("readonly", "false");
+                                $("#total").val("0");
+                                $(".quantia").each(function () {
+                                    var valor = $(this).next($(".valor")).val();
+                                    var quantia = $(this).val();
+                                    valor = valor * quantia;
+                                    novo = parseFloat($("#total").val()) + valor;
+                                    $("#total").val(novo);
+                                });
+                            }
+                            //$("#valor").attr("readonly", "true");
+                        }
                     });
                 </script>
             </div>

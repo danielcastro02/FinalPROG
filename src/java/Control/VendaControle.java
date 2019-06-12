@@ -40,6 +40,7 @@ public class VendaControle extends HttpServlet {
             RequestDispatcher disp = request.getRequestDispatcher("");
             String funcao = request.getParameter("action");
             VendaDAO vdao = new VendaDAO();
+            CarrinhoDAO cdao = new CarrinhoDAO();
             switch (funcao) {
                 case "vender":
 
@@ -48,12 +49,14 @@ public class VendaControle extends HttpServlet {
                     v.setId_usuario(((Usuario)session.getAttribute("logado")).getId_usuario());
                     v = vdao.vender(v);
                     if (v != null) {
+                        String[] carrinhos;
+                        carrinhos = request.getParameterValues("id_carrinho");
                         String[] ids = request.getParameterValues("id_produto");
                         String[] qds = request.getParameterValues("quantia");
                         ProdutoVendidoDAO pvd = new ProdutoVendidoDAO();
                         for(int i = 0; i< ids.length ; i++){
-                            if(ids.length>1){
-                                
+                            if(request.getParameterValues("id_carrinho")!=null  ){
+                                cdao.delete(Integer.parseInt(carrinhos[i]));
                             }
                             ProdutoVendido pv = new ProdutoVendido();
                             pv.setId_venda(v.getId_venda());

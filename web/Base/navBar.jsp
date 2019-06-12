@@ -17,7 +17,20 @@
                 Usuario logado = null;
                 if (request.getSession().getAttribute("logado") != null) {
                     logado = (Usuario) request.getSession().getAttribute("logado");
-                    if (logado.getAdministrador() == 1) {
+            %>
+            <li class="valign-wrapper"><div style="margin-top: 12px; height: 40px; width: 40px; border-radius: 50%; background-image: url('./Imagens/<%=logado.getFoto_perfil() %>'); background-size: cover;"></div></li>
+            <li class="hoverable">
+                <a href = "perfil.jsp" class="dropdown-trigger" data-target='dropdown2'><%=logado.getNome()%></a>
+                <!-- Dropdown Structure -->
+                <ul id='dropdown2' class='dropdown-content'>
+                    <li><a href = "perfil.jsp">Meu Perfil</a></li>
+                    <li><a href = "compras.jsp?id_usuario=<%= logado.getId_usuario()%>">Minhas Compras</a></li>
+                </ul>
+
+            </li>
+            <%
+                
+                if (logado.getAdministrador() == 1) {
             %>
 
             <li class="hoverable">
@@ -36,14 +49,7 @@
                 %>
             <li class="hoverable"><a href = "carrinho.jsp"><i class="material-icons">add_shopping_cart</i></a></li>
             <li class="hoverable"><a href = "carrinho.jsp"><span class="new badge" data-badge-caption="Item"><%= cdao.countCarrinho(logado.getId_usuario())%></span></a></li>
-            <li class="hoverable"><a href = "perfil.jsp" class="dropdown-trigger" data-target='dropdown2'><%=logado.getNome()%></a>
-                <!-- Dropdown Structure -->
-                <ul id='dropdown2' class='dropdown-content'>
-                    <li><a href = "perfil.jsp">Meu Perfil</a></li>
-                    <li><a href = "compras.jsp?id_usuario=<%= logado.getId_usuario() %>">Minhas Compras</a></li>
-                </ul>
-            
-            </li>
+
             <li class="hoverable"><a href = "./UsuarioControle?action=logout">Sair</a></li>
                 <%
                 } else {
