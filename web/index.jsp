@@ -42,8 +42,10 @@
                 <%
                     ProdutoDAO pdao = new ProdutoDAO();
                     List<Produto> ls = pdao.select();
+                    int cont = 0;
                     for (Produto p : ls) {
                         if (p.getQuantidade() > 0) {
+                            
                 %>
                 <div class="col s6 m4 l3">
                     <div class="row">
@@ -66,6 +68,11 @@
                     </div>
                 </div>
                 <%
+                    cont++;
+                    if(cont%4 == 0 && cont !=0){
+                        out.print("</div><div class='row' style='width: 90vw; margin-left: auto; margin-right: auto;'>");
+                    }
+                    
                         }
                     }
                 %>

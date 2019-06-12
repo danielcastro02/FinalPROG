@@ -52,6 +52,9 @@ public class VendaControle extends HttpServlet {
                         String[] qds = request.getParameterValues("quantia");
                         ProdutoVendidoDAO pvd = new ProdutoVendidoDAO();
                         for(int i = 0; i< ids.length ; i++){
+                            if(ids.length>1){
+                                
+                            }
                             ProdutoVendido pv = new ProdutoVendido();
                             pv.setId_venda(v.getId_venda());
                             pv.setId_produto(Integer.parseInt(ids[i]));
