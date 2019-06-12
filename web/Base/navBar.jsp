@@ -25,7 +25,7 @@
             %>
             <li class="hoverable"><a href = "carrinho.jsp"><i class="material-icons">add_shopping_cart</i></a></li>
             <li class="hoverable"><a href = "carrinho.jsp"><span class="new badge" data-badge-caption="Item"><%= cdao.countCarrinho(logado.getId_usuario()) %></span></a></li>
-            <li class="hoverable"><a href = "alteraPerfil.jsp"><%=logado.getNome()%></a></li>
+            <li class="hoverable"><a href = "perfil.jsp"><%=logado.getNome()%></a></li>
             <li class="hoverable"><a href = "./UsuarioControle?action=logout">Sair</a></li>
                 <%
                 } else {
