@@ -22,10 +22,10 @@
         <main>
             <div class="row">
                 <div class="col s6 offset-s3 card">
-                    <form action="FotoControle?action=cadastro&id_produto=<%= request.getParameter("msg")%>" method="post" enctype="multipart/form-data" class="row">
+                    <form action="UsuarioControle?action=updateFoto&id_usuario=<%= ((Usuario)session.getAttribute("logado")).getId_usuario() %>" method="post" enctype="multipart/form-data" class="row">
 
                         <div class="file-field input-field col s9 center">
-                            <h4>Informe a foto Principal do seu Produto</h4>
+                            <h4>Insira sua nova foto de perfil</h4>
                             <div class="btn">
                                 <span>Nova Foto</span>
                                 <input type="file" name="file" class="file-chos" id="file">

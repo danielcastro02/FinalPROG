@@ -25,8 +25,8 @@
                     <div class="row">
                         <br>
                         <br>
-                        <a href="../alterarPerfil.jsp">
-                            <div  class="fotoPerfilReal" style='background-image: url("./<%= us.getFoto_perfil() %>");
+                        <a href="./alteraPerfil.jsp">
+                            <div  class="fotoPerfilReal" style='background-image: url("./Imagens/<%= us.getFoto_perfil() %>");
                                   background-size: cover;
                                   background-position: center;
                                   background-repeat: no-repeat;'>
