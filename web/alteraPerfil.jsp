@@ -1,3 +1,11 @@
+
+<%-- 
+    Document   : index
+    Created on : 25/05/2019, 16:18:17
+    Author     : Daniel
+--%>
+
+
 <%@page import="Model.Usuario"%>
 <%
     if (session.getAttribute("logado") == null) {
@@ -14,6 +22,7 @@
     </head>
     <body class="homeimg">
         <jsp:include page="./Base/navBar.jsp"/>
+
 
         <%
             Usuario us = (Usuario) session.getAttribute("logado");
@@ -69,5 +78,6 @@
                 </div>
             </div>
         </main>
+
     </body>
 </html>

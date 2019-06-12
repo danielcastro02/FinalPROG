@@ -29,6 +29,7 @@ public class Conexao {
             } catch (Exception e) {
                 conexao = DriverManager.getConnection("jdbc:mysql://localhost/cartinhas", "root", "");
             }
+
             return conexao;
         }
     }
