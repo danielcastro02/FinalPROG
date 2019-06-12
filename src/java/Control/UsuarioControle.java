@@ -6,9 +6,11 @@
 package Control;
 
 import Model.Usuario;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -20,6 +22,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  *
@@ -56,8 +61,8 @@ public class UsuarioControle extends HttpServlet {
                             response.sendRedirect("./index.jsp?msg=ERRO");
                         }
                     } else {
-                        response.sendRedirect("./index.jsp?msg=errosenha");
-                        
+                        response.sendRedirect("./index.jsp?msg=ERRO");
+
                     }
                     break;
                 case "login":
@@ -65,14 +70,63 @@ public class UsuarioControle extends HttpServlet {
                     if (us != null) {
                         session.setAttribute("logado", us);
                         response.sendRedirect("./index.jsp?msg=logado");
-                    }else{
-                        response.sendRedirect("./index.jsp?msg=erroLogin");
+                    } else {
+                        response.sendRedirect("./index.jsp?msg=ERRO");
                     }
 
                     break;
                 case "logout":
                     session.removeAttribute("logado");
                     response.sendRedirect("./index.jsp?msg=deslogado");
+                    break;
+
+                case "update":
+                    Usuario user = new Usuario(request);
+                    if (udao.update(user)) {
+                        response.sendRedirect("./index.jsp");
+                    } else {
+                        response.sendRedirect("./index.jsp?msg=ERRO");
+                    }
+                    break;
+                case "updateFoto":
+                    try {
+                        /*Faz o parse do request*/
+                        List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
+
+                        /*Escreve a o arquivo na pasta img*/
+                        for (FileItem item : multiparts) {
+
+                            if (!item.isFormField()) {
+                                Usuario use = (Usuario) session.getAttribute("logado");
+                                String id_usuario = request.getParameter("id_usuario");
+                                String nome = "profile" + id_usuario + Integer.toString((int) (Math.random() * 999999999));
+                                System.out.println("ksdhfbgkaserhf");
+                                String caminho = request.getServletContext().getRealPath("Imagens") + "/../../../web/Imagens/" + nome + ".jpg";
+                                System.out.println(caminho);
+                                item.write(new File(caminho));
+                                System.out.println(id_usuario);
+                                use.setId_usuario(Integer.parseInt(id_usuario));
+                                if (!(use.getFoto_perfil().equals("userGeneric.png"))) {
+                                    File antigo = new File(request.getServletContext().getRealPath("Imagens") + '/' + use.getFoto_perfil());
+                                    System.out.println(antigo.getAbsolutePath());
+                                    antigo.delete();
+                                    antigo = new File(request.getServletContext().getRealPath("Imagens") + "/../../../web/Imagens/" + use.getFoto_perfil());
+                                    System.out.println(antigo.getAbsolutePath());
+                                    antigo.delete();
+                                }
+                                use.setFoto_perfil(nome + ".jpg");
+                                udao.updatePerfil(use);
+                                use = (Usuario) session.getAttribute("logado");
+                                use.setFoto_perfil(nome + ".jpg");
+                                session.setAttribute("logado", use);
+                            }
+                        }
+                        response.sendRedirect("./index.jsp?msg=Sucesso");
+
+                    } catch (Exception ex) {
+                        response.sendRedirect("./index.jsp?msg=ERRO");
+                        System.out.println(ex.getMessage());
+                    }
                     break;
             }
 

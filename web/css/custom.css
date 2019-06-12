@@ -12,13 +12,23 @@
 }
 
 .fotoPerfil{
-
+    
     height: 150px;
     width: 150px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 0px;
 }
+
+.fotoPerfilReal{
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0px;
+}
+
 .linkfoto{
     background: linear-gradient(transparent, transparent, black);
     background-size: 50px;
