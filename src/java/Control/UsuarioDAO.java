@@ -19,7 +19,7 @@ public class UsuarioDAO {
 
     public boolean cadastro(Usuario us) throws ClassNotFoundException, SQLException {
         Connection cn = Conexao.getConexao();
-        try{
+        try {
             String sql = "insert into usuario values(default, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = cn.prepareStatement(sql);
             ps.setString(1, us.getNome());
@@ -30,7 +30,7 @@ public class UsuarioDAO {
             ps.setInt(6, 0);
             ps.execute();
             return true;
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             return false;
         }
@@ -38,7 +38,7 @@ public class UsuarioDAO {
 
     public Usuario login(Usuario us) throws ClassNotFoundException, SQLException {
         Connection cn = Conexao.getConexao();
-        try{
+        try {
             String sql = "select * from usuario where usuario = ? and senha = ?;";
             PreparedStatement ps = cn.prepareStatement(sql);
             ps.setString(1, us.getUsuario());
@@ -47,11 +47,44 @@ public class UsuarioDAO {
             rs.next();
             us = new Usuario(rs);
             return us;
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
         }
-        
+
     }
-    
+
+    boolean updatePerfil(Usuario us) {
+        try {
+            Connection cn = Conexao.getConexao();
+            String sql = "update usuario set foto_perfil = ? where id_usuario = ?;";
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setInt(2, us.getId_usuario());
+            ps.setString(1, us.getFoto_perfil());
+            ps.execute();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+
+    }
+
+    boolean update(Usuario user) {
+        try {
+            Connection cn = Conexao.getConexao();
+            String sql = "update usuario set usuario = ?, nome = ? , telefone = ? where id_usuario = ?;";
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setString(2, user.getNome());
+            ps.setString(1, user.getUsuario());
+            ps.setString(3, user.getTelefone());
+            ps.setInt(4, user.getId_usuario());
+            ps.execute();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
 }

@@ -1,8 +1,12 @@
 package Control;
 
 import Model.ProdutoVendido;
+import Model.Venda;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProdutoVendidoDAO {
 
@@ -28,5 +32,27 @@ public class ProdutoVendidoDAO {
         }
     }
 
+    public List selectPVenda(int id){
+        try {
+            Connection con = Conexao.getConexao();
+            String sql = "select * from produtovendido where id_venda = ?";
+            PreparedStatement ps =  con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            List<ProdutoVendido> lc = new ArrayList<ProdutoVendido>();
+            while(rs.next()){
+                ProdutoVendido pv = new ProdutoVendido();
+                pv.setId_produto_vendido(rs.getInt(1));
+                pv.setId_venda(rs.getInt(2));
+                pv.setId_produto(rs.getInt(3));
+                pv.setQuantidade(rs.getDouble(4));
+                lc.add(pv);
+            }
+            return lc;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
     
 }
