@@ -27,8 +27,8 @@
             alert('Compartamento inesperado do sistema, por favor tente novamente, mesmo que nos não tenhamos mudado nada ainda...');
         </script>
         <%
-                } else if(request.getParameter("msg").equals("vendido")){
-%><script>
+        } else if (request.getParameter("msg").equals("vendido")) {
+        %><script>
             alert('Vendido!!!');
         </script><%
                 }
@@ -43,6 +43,7 @@
                     ProdutoDAO pdao = new ProdutoDAO();
                     List<Produto> ls = pdao.select();
                     for (Produto p : ls) {
+                        if (p.getQuantidade() < 1) {
                 %>
                 <div class="col s12 m6 l4">
                     <div class="row">
@@ -65,6 +66,7 @@
                     </div>
                 </div>
                 <%
+                        }
                     }
                 %>
             </div>
