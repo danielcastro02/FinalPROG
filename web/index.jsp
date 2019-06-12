@@ -45,7 +45,7 @@
                     for (Produto p : ls) {
                         if (p.getQuantidade() > 0) {
                 %>
-                <div class="col s12 m6 l4">
+                <div class="col s6 m4 l3">
                     <div class="row">
                         <div class="card col s10 offset-s1">
                             <div class="card-image">
