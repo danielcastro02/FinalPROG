@@ -12,7 +12,7 @@
 %>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta charset="UTF-8">
+<meta http -equiv="Content-Type" content="text/html; charset=utf-8"/>
 <link rel="stylesheet" href="<%=pontos%>css/materialize.css">
 <link rel="stylesheet" href="<%=pontos%>css/custom.css">
 <link rel="shortcut icon" href="<%=pontos%>Img/Src/favicon.png">

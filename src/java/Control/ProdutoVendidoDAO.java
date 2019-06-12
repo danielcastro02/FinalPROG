@@ -10,7 +10,7 @@ public class ProdutoVendidoDAO {
     public boolean inserir(ProdutoVendido pv){
         try {
             Connection con = Conexao.getConexao();
-            String sql = "insert into produtosvendidos values (default , ? ,? , ?)";
+            String sql = "insert into produtovendido values (default , ? ,? , ?)";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, pv.getId_venda());
             ps.setInt(2, pv.getId_produto());

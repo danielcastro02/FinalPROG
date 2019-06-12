@@ -23,7 +23,7 @@ public class Conexao {
         if(conexao!=null){
             return conexao;
         }else{
-            conexao = DriverManager.getConnection("jdbc:mysql://localhost/cartinhas", "root", "");
+            conexao = DriverManager.getConnection("jdbc:mysql://localhost/cartinhas", "root", "windows#s3rv3r");
             return conexao;
         }
     }

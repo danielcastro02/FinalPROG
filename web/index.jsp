@@ -43,7 +43,7 @@
                     ProdutoDAO pdao = new ProdutoDAO();
                     List<Produto> ls = pdao.select();
                     for (Produto p : ls) {
-                        if (p.getQuantidade() < 1) {
+                        if (p.getQuantidade() > 0) {
                 %>
                 <div class="col s12 m6 l4">
                     <div class="row">

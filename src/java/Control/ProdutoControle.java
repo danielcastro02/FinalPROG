@@ -33,6 +33,7 @@ public class ProdutoControle extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try (PrintWriter out = response.getWriter()) {
+            request.setCharacterEncoding("UTF-8");
             HttpSession session = request.getSession();
             RequestDispatcher disp = request.getRequestDispatcher("");
             String funcao = request.getParameter("action");
@@ -43,7 +44,7 @@ public class ProdutoControle extends HttpServlet {
                     Produto pr = new Produto(request);
                     if (pdao.cadastro(pr)) {
                         pr = pdao.selectCompleto(pr);
-                        response.sendRedirect("./envioFoto.jsp?msg="+Integer.toString(pr.getId_produto()));
+                        response.sendRedirect("./envioFoto.jsp?msg=" + Integer.toString(pr.getId_produto()));
                     } else {
                         response.sendRedirect("./index.jsp?msg=ERRO");
                     }
@@ -54,8 +55,7 @@ public class ProdutoControle extends HttpServlet {
                 case "removeCarrinho":
                     break;
                 case "comprar":
-                    
-                    
+
                     break;
             }
         }

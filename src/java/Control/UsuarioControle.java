@@ -40,6 +40,7 @@ public class UsuarioControle extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         try (PrintWriter out = response.getWriter()) {
+            request.setCharacterEncoding("UTF-8");
             HttpSession session = request.getSession();
             RequestDispatcher disp = request.getRequestDispatcher("");
             String funcao = request.getParameter("action");

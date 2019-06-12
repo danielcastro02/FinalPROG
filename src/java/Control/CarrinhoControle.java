@@ -35,6 +35,7 @@ public class CarrinhoControle extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try (PrintWriter out = response.getWriter()) {
+            request.setCharacterEncoding("UTF-8");
             HttpSession session = request.getSession();
             RequestDispatcher disp = request.getRequestDispatcher("");
             String funcao = request.getParameter("action");
