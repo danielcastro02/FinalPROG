@@ -25,7 +25,7 @@
                 <h4 class="center">Relatórios</h4>
                 <a href="comprasUsuarios.jsp"><h4 class="center">Compras por usuário</h4></a>
                 <a href="usuariosAtivos.jsp"><h4 class="center">Usuários mais ativos</h4></a>
-                <h4 class="center">Relatórios</h4>
+                <a href="selecionaPeriodo.jsp"><h4 class="center">Vendas por data</h4></a>
                 <h4 class="center">Relatórios</h4>
                 
                 </div>
