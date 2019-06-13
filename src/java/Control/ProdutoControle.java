@@ -54,25 +54,25 @@ public class ProdutoControle extends HttpServlet {
                 case "updateNome":
                     pr = new Produto();
                     pr.setNome(request.getParameter("nome"));
-                    pr.setId_produto(Integer.parseInt(request.getParameter("id_produot")));
+                    pr.setId_produto(Integer.parseInt(request.getParameter("id_produto")));
                    out.print(pdao.updateNome(pr));
                     break;
                 case "updateDescricao":
                     pr = new Produto();
-                    pr.setValor(Double.parseDouble(request.getParameter("descricao")));
-                    pr.setId_produto(Integer.parseInt(request.getParameter("id_produot")));
+                    pr.setDescricao(request.getParameter("descricao"));
+                    pr.setId_produto(Integer.parseInt(request.getParameter("id_produto")));
                     out.print(pdao.updateDescricao(pr));
                     break;
                 case "updateValor":
                     pr = new Produto();
-                    pr.setNome(request.getParameter("quantia"));
-                    pr.setId_produto(Integer.parseInt(request.getParameter("id_produot")));
+                    pr.setValor(Double.parseDouble(request.getParameter("valor")));
+                    pr.setId_produto(Integer.parseInt(request.getParameter("id_produto")));
                     out.print(pdao.updateValor(pr));
                     break;
                 case "updateQuantia":
                     pr = new Produto();
                     pr.setQuantidade(Integer.parseInt(request.getParameter("quantia")));
-                    pr.setId_produto(Integer.parseInt(request.getParameter("id_produot")));
+                    pr.setId_produto(Integer.parseInt(request.getParameter("id_produto")));
                     out.print(pdao.updateQuantidade(pr));
                     break;
             }

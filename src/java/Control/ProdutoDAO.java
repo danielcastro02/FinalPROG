@@ -134,6 +134,7 @@ public class ProdutoDAO {
             PreparedStatement ps = cn.prepareStatement(sql);
             ps.setString(1, pr.getDescricao());
             ps.setInt(2, pr.getId_produto());
+            System.out.println(ps.toString());
             ps.execute();
             return true;
         } catch (Exception e) {

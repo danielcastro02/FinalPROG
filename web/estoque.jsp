@@ -37,18 +37,23 @@
                     <tr>
                         <td><div class="input-field">
                                 <input type="text" name="nome" class="nome" value="<%= p.getNome()%>"/>
+                                <input type="text" value="<%= p.getId_produto()%>" class="idproduto" hidden="true"/>
                             </div></td>
                         <td style="max-width: 35vw;"><div class="input-field">
-                                <textarea class="materialize-textarea" name="descricao" class="descricao"><%= p.getDescricao()%></textarea>
+                                <textarea class="materialize-textarea descricao" name="descricao" ><%= p.getDescricao()%></textarea>
+                                <input type="text" value="<%= p.getId_produto()%>" class="idproduto" hidden="true"/>
                             </div></td>
                         <td>
                             <div class="input-field">
-                                <span style="width: 15%">R$</span><input style="width: 85%;" type="text" name="valor" class="valor" value="<%= p.getValor()%>"/>
+                                <span style="width: 15%">R$</span>
+                                <input style="width: 85%;" type="text" name="valor" class="valor" value="<%= p.getValor()%>"/>
+                                <input type="text" value="<%= p.getId_produto()%>" class="idproduto" hidden="true"/>
                             </div>
                         </td>
                         <td>
                             <div class="input-field">
                                 <input type="number" name="quantia" class="quantia" value="<%= p.getQuantidade()%>"/>
+                                <input type="text" value="<%= p.getId_produto()%>" class="idproduto" hidden="true"/>
                             </div>
                         </td>
                     <input type="text" value="<%= p.getId_produto()%>" class="idproduto" hidden="true"/>
@@ -60,13 +65,11 @@
             </div>
 
             <script>
-                $(".nome").change(function () {
+                $(".nome").keyup(function () {
                     var esse = $(this);
-                    alert("nome="+esse.val()+"&id_produto="+esse.next($(".idproduto")).val());
 
                     $.ajax({
-                        url: "./ProdutoControle?action=updateNome",
-                        data: "nome="+esse.val()+"&id_produto="+esse.next($(".idproduto")).val() ,
+                        url: "./ProdutoControle?action=updateNome&nome="+esse.val()+"&id_produto="+esse.next($(".idproduto")).val(),
                         type: 'post',
                         success: function (data) {
                             if(data == 'true'){
@@ -77,11 +80,10 @@
                         }
                     });
                 });
-                $(".descricao").change(function () {
+                $(".descricao").keyup(function () {
                     var esse = $(this);
                     $.ajax({
-                        url: "./ProdutoControle?action=updateDescricao",
-                        data: "descricao="+esse.val()+"&id_produto="+esse.next($(".idproduto")).val() ,
+                        url: "./ProdutoControle?action=updateDescricao&descricao="+esse.val()+"&id_produto="+esse.next($(".idproduto")).val(),
                         type: 'post',
                         success: function (data) {
                             if(data == 'true'){
@@ -92,11 +94,10 @@
                         }
                     });
                 });
-                $(".valor").change(function () {
+                $(".valor").keyup(function () {
                     var esse = $(this);
                     $.ajax({
-                        url: "./ProdutoControle?action=updateValor",
-                        data: "valor="+esse.val()+"&id_produto="+esse.next($(".idproduto")).val() ,
+                        url: "./ProdutoControle?action=updateValor&valor="+esse.val()+"&id_produto="+esse.next($(".idproduto")).val(),
                         type: 'post',
                         success: function (data) {
                             if(data == 'true'){
@@ -110,8 +111,7 @@
                 $(".quantia").change(function () {
                     var esse = $(this);
                     $.ajax({
-                        url: "./ProdutoControle?action=updateQuantia",
-                        data: "quantia="+esse.val()+"&id_produto="+esse.next($(".idproduto")).val() ,
+                        url: "./ProdutoControle?action=updateQuantia&quantia="+esse.val()+"&id_produto="+esse.next($(".idproduto")).val(),
                         type: 'post',
                         success: function (data) {
                             if(data == 'true'){
