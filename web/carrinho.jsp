@@ -60,9 +60,8 @@
                                 <input type="text" name="id_carrinho" value="<%= c.getId_carrinho()%>" hidden="true"/>
                                 <div class="row">
                                     <div class="input-field col s12">
-                                        <input type="number" class="quantia" name="quantia" value="1"/>
-                                        <input type="text" name="estoque" class="estoque" value="<%= p.getQuantidade()%>" hidden="true"/>
-                                        <input type="text" class="valor" name="individual" value="<%= p.getValor()%>"/>
+                                        <input type="number" class="quantia" name="quantia" value="1" min="1" max="<%= p.getQuantidade()%>"/>
+                                        <input type="text" class="valor" name="individual" value="<%= p.getValor()%>" hidden="true"/>
                                         <label>Quantidade:</label>
                                     </div>
                                 </div>
@@ -86,24 +85,14 @@
                 <script>
 
                     $('.quantia').change(function () {
-                        if ($(this).val() < 1) {
-                            $(this).val('1');
-                        } else {
-                            if ($(this).val() > $(this).next($(".estoque")).val()) {
-                                $(this).val(($(this).val() - 1));
-                            } else {
-                                //$("#valor").attr("readonly", "false");
-                                $("#total").val("0");
-                                $(".quantia").each(function () {
-                                    var valor = $(this).next($(".valor")).val();
-                                    var quantia = $(this).val();
-                                    valor = valor * quantia;
-                                    novo = parseFloat($("#total").val()) + valor;
-                                    $("#total").val(novo);
-                                });
-                            }
-                            //$("#valor").attr("readonly", "true");
-                        }
+                        $("#total").val(0);
+                        $(".quantia").each(function () {
+                            var valor = $(this).next($(".valor")).val();
+                            var quantia = $(this).val();
+                            valor = valor * quantia;
+                            novo = $("#total").val() + valor;
+                            $("#total").val(novo);
+                        });
                     });
                 </script>
             </div>

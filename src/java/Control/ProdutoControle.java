@@ -38,10 +38,11 @@ public class ProdutoControle extends HttpServlet {
             RequestDispatcher disp = request.getRequestDispatcher("");
             String funcao = request.getParameter("action");
             ProdutoDAO pdao = new ProdutoDAO();
+            Produto pr;
             switch (funcao) {
                 case "cadastro":
 
-                    Produto pr = new Produto(request);
+                    pr = new Produto(request);
                     if (pdao.cadastro(pr)) {
                         pr = pdao.selectCompleto(pr);
                         response.sendRedirect("./envioFoto.jsp?msg=" + Integer.toString(pr.getId_produto()));
@@ -50,12 +51,29 @@ public class ProdutoControle extends HttpServlet {
                     }
 
                     break;
-                case "addCarrinho":
+                case "updateNome":
+                    pr = new Produto();
+                    pr.setNome(request.getParameter("nome"));
+                    pr.setId_produto(Integer.parseInt(request.getParameter("id_produot")));
+                   out.print(pdao.updateNome(pr));
                     break;
-                case "removeCarrinho":
+                case "updateDescricao":
+                    pr = new Produto();
+                    pr.setValor(Double.parseDouble(request.getParameter("descricao")));
+                    pr.setId_produto(Integer.parseInt(request.getParameter("id_produot")));
+                    out.print(pdao.updateDescricao(pr));
                     break;
-                case "comprar":
-
+                case "updateValor":
+                    pr = new Produto();
+                    pr.setNome(request.getParameter("quantia"));
+                    pr.setId_produto(Integer.parseInt(request.getParameter("id_produot")));
+                    out.print(pdao.updateValor(pr));
+                    break;
+                case "updateQuantia":
+                    pr = new Produto();
+                    pr.setQuantidade(Integer.parseInt(request.getParameter("quantia")));
+                    pr.setId_produto(Integer.parseInt(request.getParameter("id_produot")));
+                    out.print(pdao.updateQuantidade(pr));
                     break;
             }
         }

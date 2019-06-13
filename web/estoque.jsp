@@ -19,23 +19,6 @@
     </head>
     <body class="homeimg">
         <jsp:include page="./Base/navBar.jsp"/>
-        <%
-            try {
-                if (request.getParameter("msg").equals("ERRO")) {
-        %>
-        <script>
-            alert('Compartamento inesperado do sistema, por favor tente novamente, mesmo que nos não tenhamos mudado nada ainda...');
-        </script>
-        <%
-        } else if (request.getParameter("msg").equals("vendido")) {
-        %><script>
-            alert('Vendido!!!');
-        </script><%
-                }
-            } catch (Exception e) {
-
-            }
-        %>
         <main>
             <div class="row" style="width: 90vw; margin-left: auto; margin-right: auto;">
                 <table class="card striped">
@@ -75,6 +58,73 @@
                     %>
                 </table>
             </div>
+
+            <script>
+                $(".nome").change(function () {
+                    var esse = $(this);
+                    alert("nome="+esse.val()+"&id_produto="+esse.next($(".idproduto")).val());
+
+                    $.ajax({
+                        url: "./ProdutoControle?action=updateNome",
+                        data: "nome="+esse.val()+"&id_produto="+esse.next($(".idproduto")).val() ,
+                        type: 'post',
+                        success: function (data) {
+                            if(data == 'true'){
+                                
+                            }else{
+                                alert('Algo deu errado, recarregue a pagina e tente novamente!')
+                            }
+                        }
+                    });
+                });
+                $(".descricao").change(function () {
+                    var esse = $(this);
+                    $.ajax({
+                        url: "./ProdutoControle?action=updateDescricao",
+                        data: "descricao="+esse.val()+"&id_produto="+esse.next($(".idproduto")).val() ,
+                        type: 'post',
+                        success: function (data) {
+                            if(data == 'true'){
+                                
+                            }else{
+                                alert('Algo deu errado, recarregue a pagina e tente novamente!')
+                            }
+                        }
+                    });
+                });
+                $(".valor").change(function () {
+                    var esse = $(this);
+                    $.ajax({
+                        url: "./ProdutoControle?action=updateValor",
+                        data: "valor="+esse.val()+"&id_produto="+esse.next($(".idproduto")).val() ,
+                        type: 'post',
+                        success: function (data) {
+                            if(data == 'true'){
+                                
+                            }else{
+                                alert('Algo deu errado, recarregue a pagina e tente novamente!')
+                            }
+                        }
+                    });
+                });
+                $(".quantia").change(function () {
+                    var esse = $(this);
+                    $.ajax({
+                        url: "./ProdutoControle?action=updateQuantia",
+                        data: "quantia="+esse.val()+"&id_produto="+esse.next($(".idproduto")).val() ,
+                        type: 'post',
+                        success: function (data) {
+                            if(data == 'true'){
+                                
+                            }else{
+                                alert('Algo deu errado, recarregue a pagina e tente novamente!')
+                            }
+                        }
+                    });
+                });
+
+            </script>
+
         </main>
     </body>
 </html>

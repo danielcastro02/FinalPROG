@@ -112,6 +112,64 @@ public class ProdutoDAO {
         
     }
 
+    boolean updateNome(Produto pr) {
+        try {
+            Connection cn = Conexao.getConexao();
+            String sql = "update produto set nome = ? where id_produto = ?;";
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setString(1, pr.getNome());
+            ps.setInt(2, pr.getId_produto());
+            ps.execute();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    boolean updateDescricao(Produto pr) {
+        try {
+            Connection cn = Conexao.getConexao();
+            String sql = "update produto set descricao = ? where id_produto = ?;";
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setString(1, pr.getDescricao());
+            ps.setInt(2, pr.getId_produto());
+            ps.execute();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+    boolean updateValor(Produto pr) {
+        try {
+            Connection cn = Conexao.getConexao();
+            String sql = "update produto set valor = ? where id_produto = ?;";
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setDouble(1, pr.getValor());
+            ps.setInt(2, pr.getId_produto());
+            ps.execute();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+    boolean updateQuantidade(Produto pr) {
+        try {
+            Connection cn = Conexao.getConexao();
+            String sql = "update produto set quantidade = ? where id_produto = ?;";
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setInt(1, pr.getQuantidade());
+            ps.setInt(2, pr.getId_produto());
+            ps.execute();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
    
     
 }

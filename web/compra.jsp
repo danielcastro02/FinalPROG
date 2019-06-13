@@ -53,7 +53,7 @@
                                     <input type="text" name="valor" value="<%= p.getValor()%>" hidden="true" id="valor"/>
                                     <div class="row">
                                         <div class="input-field col s12">
-                                            <input type="number" id="quantia" name="quantia" value="1"/>
+                                            <input type="number" id="quantia" name="quantia" value="1" min="1" max="<%= p.getQuantidade()%>"/>
                                             <input type="text" name="estoque" class="estoque" value="<%= p.getQuantidade()%>" hidden="true"/>
 
                                             <label>Quantidade:</label>
@@ -77,10 +77,8 @@
         <script>
             $('#quantia').change(function () {
                 if ($(this).val() < 1) {
-                    $(this).val('1');
                 } else {
                     if ($(this).val() > $(this).next($(".estoque")).val()) {
-                        $(this).val(($(this).val() - 1));
                     } else {
                         var valor = <%= p.getValor()%>;
                         var quantia = $(this).val();
