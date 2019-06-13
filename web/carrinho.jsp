@@ -60,7 +60,7 @@
                                 <input type="text" name="id_carrinho" value="<%= c.getId_carrinho()%>" hidden="true"/>
                                 <div class="row">
                                     <div class="input-field col s12">
-                                        <input type="number" class="quantia" name="quantia" value="1" min="1" max="<%= p.getQuantidade()%>"/>
+                                        <input type="number" class="quantia" name="quantia" value="<%= c.getQuantidade()%>" min="1" max="<%= p.getQuantidade()%>"/>
                                         <input type="text" class="valor" name="individual" value="<%= p.getValor()%>" hidden="true"/>
                                         <label>Quantidade:</label>
                                     </div>

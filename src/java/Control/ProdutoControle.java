@@ -51,6 +51,13 @@ public class ProdutoControle extends HttpServlet {
                     }
 
                     break;
+                case "deletar":
+                    if(pdao.delete(Integer.parseInt(request.getParameter("id_produto")))){
+                        response.sendRedirect("./estoque.jsp");
+                    }else{
+                        response.sendRedirect("./index.jsp?msg=ERRO");
+                    }
+                    break;
                 case "updateNome":
                     pr = new Produto();
                     pr.setNome(request.getParameter("nome"));

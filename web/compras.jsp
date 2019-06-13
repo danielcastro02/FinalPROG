@@ -65,16 +65,16 @@
                     </li>
 
                     <%
-                            }
-                        }else{
-%>
-<div class="row card center">
-    <br><br><br><br><br><br><br>
-    <h5>Você ainda não tem compras aqui</h5>
-    <br><br><br><br><br><br><br>
-</div>
+                        }
+                    } else {
+                    %>
+                    <div class="row card center">
+                        <br><br><br><br><br><br><br>
+                        <h5>Você ainda não tem compras aqui</h5>
+                        <br><br><br><br><br><br><br>
+                    </div>
                     <%
-}
+                        }
                     %>
                 </ul>
             </div>

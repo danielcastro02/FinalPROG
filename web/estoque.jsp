@@ -21,6 +21,7 @@
         <jsp:include page="./Base/navBar.jsp"/>
         <main>
             <div class="row" style="width: 90vw; margin-left: auto; margin-right: auto;">
+                <h4 class="card center col s6 offset-s3">Estoque</h4>
                 <table class="card striped">
                     <tr>
                         <td>Nome:</td>
@@ -55,6 +56,9 @@
                                 <input type="number" name="quantia" class="quantia" value="<%= p.getQuantidade()%>"/>
                                 <input type="text" value="<%= p.getId_produto()%>" class="idproduto" hidden="true"/>
                             </div>
+                        </td>
+                        <td>
+                            <a href="ProdutoControle?action=deletar&id_produto=<%=p.getId_produto() %>"><i class="material-icons red-text">delete</i></a>
                         </td>
                     <input type="text" value="<%= p.getId_produto()%>" class="idproduto" hidden="true"/>
                     </tr>
@@ -124,7 +128,6 @@
                 });
 
             </script>
-
         </main>
     </body>
 </html>

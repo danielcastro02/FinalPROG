@@ -17,27 +17,44 @@ import java.util.List;
  * @author Daniel
  */
 public class CarrinhoDAO {
-    public boolean inserir(Carrinho c){
+
+    public boolean inserir(Carrinho c) {
         try {
             Connection con = Conexao.getConexao();
-            String sql = "insert into carrinho values (default, ? ,?,?)";
-            PreparedStatement ps =  con.prepareStatement(sql);
+
+            String sql = "select * from carrinho where id_usuario = ? and id_produto = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, c.getId_usuario());
             ps.setInt(2, c.getId_produto());
-            ps.setInt(3, c.getQuantidade());
-            ps.execute();
-            return true;
+            ResultSet rs = ps.executeQuery();
+            try {
+                rs.next();
+                int a = rs.getInt(1);
+                sql = "update carrinho set quantidade = quantidade+1 where id_carrinho = ?";
+                ps = con.prepareStatement(sql);
+                ps.setInt(1, a);
+                ps.execute();
+                return true;
+            } catch (Exception e) {
+                sql = "insert into carrinho values (default, ? ,?,?)";
+                ps = con.prepareStatement(sql);
+                ps.setInt(1, c.getId_usuario());
+                ps.setInt(2, c.getId_produto());
+                ps.setInt(3, c.getQuantidade());
+                ps.execute();
+                return true;
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return false;
         }
     }
-    
-    public int countCarrinho(int id_usuario){
+
+    public int countCarrinho(int id_usuario) {
         try {
             Connection con = Conexao.getConexao();
             String sql = "select count(id_carrinho) from carrinho where id_usuario = ?";
-            PreparedStatement ps =  con.prepareStatement(sql);
+            PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id_usuario);
             ResultSet rs = ps.executeQuery();
             rs.next();
@@ -47,12 +64,12 @@ public class CarrinhoDAO {
             return 0;
         }
     }
-    
-    public boolean delete(int id){
+
+    public boolean delete(int id) {
         try {
             Connection con = Conexao.getConexao();
             String sql = "delete from carrinho where id_carrinho = ?";
-            PreparedStatement ps =  con.prepareStatement(sql);
+            PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             ps.execute();
             return true;
@@ -61,16 +78,16 @@ public class CarrinhoDAO {
             return false;
         }
     }
-    
-    public List selectCarrinho(int id){
+
+    public List selectCarrinho(int id) {
         try {
             Connection con = Conexao.getConexao();
             String sql = "select * from carrinho where id_usuario = ?";
-            PreparedStatement ps =  con.prepareStatement(sql);
+            PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             List<Carrinho> lc = new ArrayList<Carrinho>();
-            while(rs.next()){
+            while (rs.next()) {
                 Carrinho c = new Carrinho();
                 c.setId_carrinho(rs.getInt(1));
                 c.setId_produto(rs.getInt(3));
@@ -84,6 +101,5 @@ public class CarrinhoDAO {
             return null;
         }
     }
-    
-    
+
 }

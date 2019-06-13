@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -68,6 +70,23 @@ public class UsuarioDAO {
             return false;
         }
 
+    }
+    
+    public List select(){
+        try {
+            Connection cn = Conexao.getConexao();
+            String sql = "select * from usuario";
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            List<Usuario> ls = new ArrayList<Usuario>();
+            while (rs.next()) {
+                Usuario us = new Usuario(rs);
+                ls.add(us);
+            }
+            return ls;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     boolean update(Usuario user) {

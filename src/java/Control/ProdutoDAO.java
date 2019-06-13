@@ -171,6 +171,19 @@ public class ProdutoDAO {
         }
     }
 
+    boolean delete(int parseInt) {
+        try {
+            Connection con = Conexao.getConexao();
+            String sql = "delete from produto where id_produto = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, parseInt);
+            ps.execute();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
    
     
 }
