@@ -1,7 +1,7 @@
 <%@page import="Model.Usuario"%>
 <%
     if (session.getAttribute("logado") == null) {
-        response.sendRedirect("login.jsp");
+        response.sendRedirect("ollogin.jsp");
     }
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

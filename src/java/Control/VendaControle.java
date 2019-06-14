@@ -10,12 +10,17 @@ import Model.Usuario;
 import Model.Venda;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.text.DateFormatter;
 
 /**
  *
@@ -46,7 +51,7 @@ public class VendaControle extends HttpServlet {
 
                     Venda v = new Venda();
                     v.setValor(Double.parseDouble(request.getParameter("valor")));
-                    v.setId_usuario(((Usuario)session.getAttribute("logado")).getId_usuario());
+                    v.setId_usuario(((Usuario) session.getAttribute("logado")).getId_usuario());
                     v = vdao.vender(v);
                     if (v != null) {
                         String[] carrinhos;
@@ -54,8 +59,8 @@ public class VendaControle extends HttpServlet {
                         String[] ids = request.getParameterValues("id_produto");
                         String[] qds = request.getParameterValues("quantia");
                         ProdutoVendidoDAO pvd = new ProdutoVendidoDAO();
-                        for(int i = 0; i< ids.length ; i++){
-                            if(request.getParameterValues("id_carrinho")!=null  ){
+                        for (int i = 0; i < ids.length; i++) {
+                            if (request.getParameterValues("id_carrinho") != null) {
                                 cdao.delete(Integer.parseInt(carrinhos[i]));
                             }
                             ProdutoVendido pv = new ProdutoVendido();
@@ -70,7 +75,20 @@ public class VendaControle extends HttpServlet {
                     }
 
                     break;
+                case "relatorioVendasData":
+                    request.setAttribute("ListaVendidos", vdao.selectDataMaior(request.getParameter("inicio"), request.getParameter("fim")));
+                    disp = request.getRequestDispatcher("./relatorioMaisVendido.jsp");
+                    disp.forward(request, response);
+                    break;
+                case "relatorioUsuariosAtivos":
+                    request.setAttribute("ListaUsuariosResult", vdao.selectUsuariosAtivos(request.getParameter("inicio"), request.getParameter("fim")));
+                    disp = request.getRequestDispatcher("./usuariosAtivos.jsp");
+                    disp.forward(request, response);
+
+                    break;
             }
+        } catch (ParseException ex) {
+            Logger.getLogger(VendaControle.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

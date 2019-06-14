@@ -15,7 +15,7 @@
             <%
                 CarrinhoDAO cdao = new CarrinhoDAO();
                 Usuario logado = null;
-                if (request.getSession().getAttribute("logado") != null) {
+                if (session.getAttribute("logado") != null) {
                     logado = (Usuario) request.getSession().getAttribute("logado");
             %>
             <li class="valign-wrapper"><div style="margin-top: 12px; height: 40px; width: 40px; border-radius: 50%; background-image: url('./Imagens/<%=logado.getFoto_perfil() %>'); background-size: cover;"></div></li>

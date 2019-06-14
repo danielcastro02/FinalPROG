@@ -259,3 +259,17 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+select
+ u.nome,
+ count(distinct v.id_venda),
+ sum(pv.quantidade),
+ sum(pv.quantidade * pr.valor)
+     from 
+        (venda as v left outer join 
+            (produtovendido as pv left outer join produto as pr 
+                on pr.id_produto = pv.id_produto)
+                    on pv.id_venda = v.id_venda) left outer join usuario as u 
+                        on v.id_usuario = u.id_usuario where v.data_venda between ? and ?
+                            group by u.id_usuario 
+                                ORDER by 4 desc

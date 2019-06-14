@@ -24,7 +24,7 @@
                 <div class="col s8 offset-s2 card">
                     <h4 class="center">Selecione o periodo:</h4>
                     <div class="row">
-                        <form action="./VendaControle?action=relatorioVendasData" method="post">
+                        <form action="./VendaControle?action=relatorioUsuariosAtivos" method="post">
                             <div class="input-field col s4">
                                 <input type="date" name="inicio"/>
                                 <label>Data de Início</label>
