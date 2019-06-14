@@ -35,11 +35,8 @@ public class VendaDAO {
             Date data = this.geraData();
             ps.setDate(3, data);
             ps.execute();
-            sql = "select * from venda where valor = ? and id_usuario = ? and data_venda = ?";
+            sql = "select max(id_usuario) from venda";
             ps = con.prepareStatement(sql);
-            ps.setDouble(1, v.getValor());
-            ps.setInt(2, v.getId_usuario());
-            ps.setDate(3, data);
             ResultSet rs = ps.executeQuery();
             rs.next();
             v.setData_venda(data);
@@ -103,7 +100,7 @@ public class VendaDAO {
     public java.sql.Date geraData() throws ParseException {
         int dia = this.sorteador(1, 28);
         int mes = this.sorteador(1, 12);
-        int ano = this.sorteador(2016, 2019);
+        int ano = this.sorteador(2018, 2019);
         String data = "" + ano + "-" + mes + "-" + dia;
         DateFormat dfm = new SimpleDateFormat("yyyy-MM-dd");
         java.sql.Date date = new java.sql.Date(dfm.parse(data).getTime());
@@ -113,7 +110,8 @@ public class VendaDAO {
     public int sorteador(int inicio, int fim) {
         int x = -1;
         while (x == -1 || x > fim || x < inicio) {
-            x = (int) Math.random() * fim;
+            x = (int) (Math.random() * fim);
+            System.out.println(x);
         }
         return x;
     }

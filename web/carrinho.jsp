@@ -61,7 +61,7 @@
                                 <div class="row">
                                     <div class="input-field col s12">
                                         <input type="number" class="quantia" name="quantia" value="<%= c.getQuantidade()%>" min="1" max="<%= p.getQuantidade()%>"/>
-                                        <input type="text" class="valor" name="individual" value="<%= p.getValor()%>" hidden="true"/>
+                                        <input type="number" class="valor" name="individual" value="<%= p.getValor()%>" hidden="true"/>
                                         <label>Quantidade:</label>
                                     </div>
                                 </div>
@@ -83,14 +83,23 @@
                     </div>
                 </form>
                 <script>
-
+                    $("#total").val(0);
+                    $(".quantia").each(function () {
+                        var valor = $(this).next($(".valor")).val();
+                        var quantia = $(this).val();
+                        valor = valor * quantia;
+                        novo = parseFloat($("#total").val()) + parseFloat(valor);
+                        novo = parseFloat(novo);
+                        $("#total").val(novo);
+                    });
                     $('.quantia').change(function () {
                         $("#total").val(0);
                         $(".quantia").each(function () {
                             var valor = $(this).next($(".valor")).val();
                             var quantia = $(this).val();
                             valor = valor * quantia;
-                            novo = $("#total").val() + valor;
+                            novo = parseFloat($("#total").val()) + parseFloat(valor);
+                            novo = parseFloat(novo);
                             $("#total").val(novo);
                         });
                     });
