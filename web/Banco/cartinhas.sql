@@ -266,10 +266,10 @@ select
  sum(pv.quantidade),
  sum(pv.quantidade * pr.valor)
      from 
-        (venda as v left outer join 
-            (produtovendido as pv left outer join produto as pr 
+        (venda as v inner join 
+            (produtovendido as pv inner join produto as pr 
                 on pr.id_produto = pv.id_produto)
-                    on pv.id_venda = v.id_venda) left outer join usuario as u 
+                    on pv.id_venda = v.id_venda) inner join usuario as u 
                         on v.id_usuario = u.id_usuario where v.data_venda between ? and ?
                             group by u.id_usuario 
                                 ORDER by 4 desc

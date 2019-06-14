@@ -130,10 +130,10 @@ public class VendaDAO {
                     + " sum(pv.quantidade),\n"
                     + " sum(pv.quantidade * pr.valor)\n"
                     + "     from \n"
-                    + "        (venda as v left outer join \n"
-                    + "            (produtovendido as pv left outer join produto as pr \n"
+                    + "        (venda as v inner join \n"
+                    + "            (produtovendido as pv inner join produto as pr \n"
                     + "                on pr.id_produto = pv.id_produto)\n"
-                    + "                    on pv.id_venda = v.id_venda) left outer join usuario as u \n"
+                    + "                    on pv.id_venda = v.id_venda) inner join usuario as u \n"
                     + "                        on v.id_usuario = u.id_usuario where v.data_venda between ? and ?\n"
                     + "                            group by u.id_usuario \n"
                     + "                                ORDER by 4 desc";
