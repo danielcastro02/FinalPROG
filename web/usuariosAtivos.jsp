@@ -25,7 +25,7 @@
         <main>
             <div class="row" style="width: 90vw; margin-left: auto; margin-right: auto;">
                 <div class="col s8 offset-s2 card">
-                    <h4 class="center">Relatório de produtos mais vendidos de: <%=request.getParameter("inicio")+" até "+ request.getParameter("fim") %></h4>
+                    <h4 class="center">Relatório de usuários mais ativos de: <%=request.getParameter("inicio")+" até "+ request.getParameter("fim") %></h4>
                     <div class="row">
                         <table>
                             <tr>
