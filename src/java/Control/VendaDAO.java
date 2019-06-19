@@ -35,7 +35,7 @@ public class VendaDAO {
             Date data = this.geraData();
             ps.setDate(3, data);
             ps.execute();
-            sql = "select max(id_usuario) from venda";
+            sql = "select max(id_venda) from venda";
             ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             rs.next();

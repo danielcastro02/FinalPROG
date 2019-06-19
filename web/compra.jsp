@@ -48,7 +48,7 @@
                         <div class="col s8">
                             <div class="row center">
                                 <h4>Confirme a compra:</h4>
-                                <form action="./VendaControle?action=vender" method="POST" class="col s12">
+                                <form action="./VendaControle?action=vendaIndiv" method="POST" class="col s12">
                                     <input type="text" name="id_produto" value="<%= request.getParameter("id_produto")%>" hidden="true"/>
                                     <input type="text" name="valor" value="<%= p.getValor()%>" hidden="true" id="valor"/>
                                     <div class="row">

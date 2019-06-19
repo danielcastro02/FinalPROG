@@ -75,6 +75,26 @@ public class VendaControle extends HttpServlet {
                     }
 
                     break;
+                case "vendaIndiv":
+                    Venda ve = new Venda();
+                    ve.setValor(Double.parseDouble(request.getParameter("valor")));
+                    ve.setId_usuario(((Usuario) session.getAttribute("logado")).getId_usuario());
+                    ve = vdao.vender(ve);
+                    if (ve != null) {
+                        String ids = request.getParameter("id_produto");
+                        String qds = request.getParameter("quantia");
+                        ProdutoVendidoDAO pvda = new ProdutoVendidoDAO();
+                        ProdutoVendido pvd = new ProdutoVendido();
+                        pvd.setId_venda(ve.getId_venda());
+                        pvd.setId_produto(Integer.parseInt(ids));
+                        pvd.setQuantidade(Integer.parseInt(qds));
+                        pvda.inserir(pvd);
+                        response.sendRedirect("./index.jsp?msg=vendido");
+                    } else {
+                        response.sendRedirect("./index.jsp?msg=ERRO");
+                    }
+
+                    break;
                 case "relatorioVendasData":
                     request.setAttribute("ListaVendidos", vdao.selectDataMaior(request.getParameter("inicio"), request.getParameter("fim")));
                     disp = request.getRequestDispatcher("./relatorioMaisVendido.jsp");
