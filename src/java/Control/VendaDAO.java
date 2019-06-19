@@ -98,9 +98,9 @@ public class VendaDAO {
     }
 
     public java.sql.Date geraData() throws ParseException {
-        int dia = this.sorteador(1, 28);
-        int mes = this.sorteador(1, 12);
-        int ano = this.sorteador(2018, 2019);
+        int dia = this.sorteador(1, 29);
+        int mes = this.sorteador(1, 13);
+        int ano = this.sorteador(2018, 2020);
         String data = "" + ano + "-" + mes + "-" + dia;
         DateFormat dfm = new SimpleDateFormat("yyyy-MM-dd");
         java.sql.Date date = new java.sql.Date(dfm.parse(data).getTime());
