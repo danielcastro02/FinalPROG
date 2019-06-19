@@ -74,7 +74,7 @@
                         }
                     %>
                     <div class="input-field">
-                        <input type="text" name="valor" id="total" value="<%= valortotal%>"/>
+                        <input type="text" name="valor" id="total" value="<%= valortotal%>" readonly="true"/>
                         <label>Valor Total da compra:</label>
                     </div>
                     <div class="row center">
