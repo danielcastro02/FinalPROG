@@ -65,11 +65,11 @@ public class UsuarioControle extends HttpServlet {
                     break;
                 case "login":
                     us = udao.login(us);
-                    if (us != null) {
+                    if (us!=null) {
                         session.setAttribute("logado", us);
                         response.sendRedirect("./index.jsp?msg=logado");
                     } else {
-                        response.sendRedirect("./index.jsp?msg=ERRO");
+                        response.sendRedirect("./login.jsp?msg=erro");
                     }
 
                     break;
@@ -145,6 +145,14 @@ public class UsuarioControle extends HttpServlet {
                     break;
                 case "tornaadm":
                     out.print(udao.tornaAdm(Integer.parseInt(request.getParameter("id_usuario"))));
+                    response.sendRedirect("usuariocrud.jsp");
+                    break;
+                case "ativar":
+                    out.print(udao.ativar(Integer.parseInt(request.getParameter("id_usuario"))));
+                    response.sendRedirect("usuariocrud.jsp");
+                    break;
+                case "desativar":
+                    out.print(udao.desativar(Integer.parseInt(request.getParameter("id_usuario"))));
                     response.sendRedirect("usuariocrud.jsp");
                     break;
             }

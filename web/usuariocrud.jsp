@@ -46,6 +46,7 @@
                         <td>Telefone:</td>
                         <td>Perfil:</td>
                         <td>Administrador:</td>
+                        <td>Ativo:</td>
                     </tr>
                     <%                        UsuarioDAO udao = new UsuarioDAO();
                         List<Usuario> ls = udao.select();
@@ -85,15 +86,23 @@
 
                                 }
                                %>&id_usuario=<%= p.getId_usuario()%>"><%
-                                    if (p.getAdministrador() == 1) {
+                                   if (p.getAdministrador() == 1) {
                                 %>Remover ADM<%
-                                    } else {
+                                } else {
                                 %>Tornar ADM<%
-                                        }
+                                    }
                                 %></a>
                         </td>
                         <td>
-                            <a href="UsuarioControle?action=deletar&id_usuario=<%=p.getId_usuario()%>"><i class="material-icons red-text">delete</i></a>
+                            <% if (p.getAtivo() == 1) {%>
+                            <a href="UsuarioControle?action=desativar&id_usuario=<%=p.getId_usuario()%>">Desativar</a>
+                            <% } else {
+                            %>
+                            <a href="UsuarioControle?action=ativar&id_usuario=<%=p.getId_usuario()%>">Ativar</a>
+
+                            <%
+                                }%>
+
                         </td>
                     <input type="text" value="<%= p.getId_usuario()%>" class="idusuario" hidden="true"/>
                     </tr>
