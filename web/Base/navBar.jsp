@@ -42,6 +42,7 @@
                     <li><a href = "cadastroProduto.jsp">Novo produto</a></li>
                     <li><a href = "relatorio.jsp">Relatórios</a></li>
                     <li><a href = "estoque.jsp">Estoque</a></li>
+                    <li><a href = "usuariocrud.jsp">Usuários</a></li>
                 </ul>
 
                 <%

@@ -124,6 +124,29 @@ public class UsuarioControle extends HttpServlet {
                         System.out.println(ex.getMessage());
                     }
                     break;
+                case "updateNome":
+                    out.print(udao.updateNome(request.getParameter("nome"), Integer.parseInt(request.getParameter("id_usuario"))));
+                    break;
+                case "updateUsuario":
+                    out.print(udao.updateUsuario(request.getParameter("usuario"), Integer.parseInt(request.getParameter("id_usuario"))));
+
+                    break;
+                case "updateSenha":
+                    out.print(udao.updateSenha(request.getParameter("senha"), Integer.parseInt(request.getParameter("id_usuario"))));
+
+                    break;
+                case "updateTelefone":
+                    out.print(udao.updateTelefone(request.getParameter("telefone"), Integer.parseInt(request.getParameter("id_usuario"))));
+
+                    break;
+                case "removeadm":
+                    out.print(udao.removeAdm(Integer.parseInt(request.getParameter("id_usuario"))));
+                    response.sendRedirect("usuariocrud.jsp");
+                    break;
+                case "tornaadm":
+                    out.print(udao.tornaAdm(Integer.parseInt(request.getParameter("id_usuario"))));
+                    response.sendRedirect("usuariocrud.jsp");
+                    break;
             }
 
         }
