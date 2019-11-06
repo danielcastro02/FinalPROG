@@ -21,11 +21,22 @@ public class Usuario {
     private String telefone;
     private String foto_perfil;
     private int administrador;
+    private int ativo;
     private String senha;
 
     public Usuario() {
     }
 
+    public int getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(int ativo) {
+        this.ativo = ativo;
+    }
+
+    
+    
     public Usuario(ResultSet rs) {
         try {
             this.id_usuario = rs.getInt(1);
@@ -34,6 +45,7 @@ public class Usuario {
             this.telefone = rs.getString(5);
             this.foto_perfil = rs.getString(6);
             this.administrador = rs.getInt(7);
+            this.ativo = rs.getInt(8);
             this.senha = rs.getString(4);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());

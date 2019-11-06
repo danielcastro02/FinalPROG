@@ -26,12 +26,12 @@
 
         <%
             Usuario us = (Usuario) session.getAttribute("logado");
-
+            int id_usuario = (request.getParameter("id_usuario")!=null? Integer.parseInt(request.getParameter("id_usuario")): us.getId_usuario() );
         %>
         <main>
             <div class="row">
                 <div class="col s6 offset-s3 card">
-                    <form action="UsuarioControle?action=updateFoto&id_usuario=<%= ((Usuario)session.getAttribute("logado")).getId_usuario() %>" method="post" enctype="multipart/form-data" class="row">
+                    <form action="UsuarioControle?action=updateFoto&id_usuario=<%= id_usuario %>" method="post" enctype="multipart/form-data" class="row">
 
                         <div class="file-field input-field col s9 center">
                             <h4>Insira sua nova foto de perfil</h4>
