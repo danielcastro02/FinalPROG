@@ -3,7 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
+
 -- Generation Time: 27-Jun-2019 às 14:17
+
 -- Versão do servidor: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -31,7 +33,9 @@ CREATE TABLE IF NOT EXISTS `carrinho` (
   `id_usuario` int(11) NOT NULL,
   `id_produto` int(11) NOT NULL,
   `quantidade` int(11) NOT NULL DEFAULT '1'
+
 ) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 
 -- --------------------------------------------------------
 
@@ -91,6 +95,7 @@ CREATE TABLE IF NOT EXISTS `produto` (
 --
 
 INSERT INTO `produto` (`id_produto`, `nome`, `descricao`, `valor`, `quantidade`) VALUES
+
 (1, 'Carta Ninja', 'agora tem que aparecer', '50.50', 100),
 (2, 'Dragão Branco de Olhos Azuis', 'Este lendário dragão é uma poderosa máquina de destruição. Praticamente invencível, muito poucos enfrentaram essa magnifica criatura e viveram para contar a história.', '3.99', 50),
 (3, 'Mago Negro', 'O mago definitivo em termos de ataque e defesa.', '3.99', 10),
@@ -114,6 +119,7 @@ INSERT INTO `produto` (`id_produto`, `nome`, `descricao`, `valor`, `quantidade`)
 (22, 'Dragão Negro de Olhos Vermelhos', 'Um dragão feroz com um ataque letal.', '2.99', 53),
 (23, 'carta ninja do Garça', 'Ultra Rara...', '777.00', 0);
 
+
 -- --------------------------------------------------------
 
 --
@@ -125,7 +131,9 @@ CREATE TABLE IF NOT EXISTS `produtovendido` (
   `id_venda` int(11) NOT NULL,
   `id_produto` int(11) NOT NULL,
   `quantidade` int(11) NOT NULL DEFAULT '1'
+
 ) ENGINE=InnoDB AUTO_INCREMENT=140 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 
 --
 -- Extraindo dados da tabela `produtovendido`
@@ -189,11 +197,13 @@ INSERT INTO `produtovendido` (`id_produtos_vendidos`, `id_venda`, `id_produto`, 
 (132, 22, 11, 1),
 (133, 22, 13, 1),
 (134, 22, 10, 1),
+
 (135, 22, 21, 1),
 (136, 23, 14, 30),
 (137, 24, 3, 40),
 (138, 26, 9, 3),
 (139, 27, 23, 1);
+
 
 -- --------------------------------------------------------
 
@@ -241,7 +251,9 @@ CREATE TABLE IF NOT EXISTS `venda` (
   `valor` decimal(15,2) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `data_venda` date DEFAULT NULL
+
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 
 --
 -- Extraindo dados da tabela `venda`
@@ -263,6 +275,7 @@ INSERT INTO `venda` (`id_venda`, `valor`, `id_usuario`, `data_venda`) VALUES
 (25, '0.00', 12, '2019-08-27'),
 (26, '23.97', 12, '2019-04-19'),
 (27, '777.00', 12, '2019-06-23');
+
 
 --
 -- Indexes for dumped tables
@@ -312,7 +325,9 @@ ALTER TABLE `venda`
 -- AUTO_INCREMENT for table `carrinho`
 --
 ALTER TABLE `carrinho`
+
 MODIFY `id_carrinho` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=79;
+
 --
 -- AUTO_INCREMENT for table `foto`
 --
@@ -327,7 +342,9 @@ MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
 -- AUTO_INCREMENT for table `produtovendido`
 --
 ALTER TABLE `produtovendido`
+
 MODIFY `id_produtos_vendidos` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=140;
+
 --
 -- AUTO_INCREMENT for table `usuario`
 --
@@ -337,7 +354,9 @@ MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 -- AUTO_INCREMENT for table `venda`
 --
 ALTER TABLE `venda`
+
 MODIFY `id_venda` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=28;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
